@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Ресторан Джаз</string>
+    <string name="waiters">Для официантов</string>
+    <string name="error_emp">Неправильный логин или пароль</string>
+    <string name="login">Логин</string>>
+    <string name="password">Пароль</string>
+    <string name="enter">Войти</string>
+</resources>
