@@ -2,15 +2,19 @@ package ru.startandroid.develop.simplenetworkconnector.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.room.Room;
+
+import com.dd.CircularProgressButton;
 
 import ru.startandroid.develop.simplenetworkconnector.R;
 import ru.startandroid.develop.simplenetworkconnector.WaitersMainActivity;
@@ -22,22 +26,26 @@ public class LoginActivity extends FragmentActivity {
 
     CheckLoginLocalDB checkLogin;
     EditText login, password;
-    Button button, forDevelopers;
     TextView tv_error;
     RestaurantDatabase db;
     MyViewModel model;
+    ImageButton forDevelopers;
+    Button button;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_activity);
 
+
+
         login = (EditText)findViewById(R.id.login);
         password = (EditText)findViewById(R.id.password);
-        button = (Button)findViewById(R.id.button);
+        button = (Button) findViewById(R.id.button);
         tv_error = (TextView)findViewById(R.id.tv_error);
         model = ViewModelProviders.of(this).get(MyViewModel.class);
-        forDevelopers = (Button)findViewById(R.id.for_developers);
+        forDevelopers = (ImageButton) findViewById(R.id.for_developers);
+
     }
 
     @Override

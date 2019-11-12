@@ -27,7 +27,7 @@ public class WaitersMainActivity extends AppCompatActivity {
 
 
         table2 = (ImageButton) findViewById(R.id.img_table2);
-        table2.setImageResource(R.drawable.baseline_restaurant_black_48);
+        table2.setImageResource(R.drawable.table);
 
         waiters_toolbar = (Toolbar)findViewById(R.id.waiters_toolbar);
         setSupportActionBar(waiters_toolbar);
