@@ -23,6 +23,6 @@
         android:layout_height="161dp"
         android:layout_marginEnd="208dp"
         android:contentDescription="1 cliet"
-        app:srcCompat="@drawable/baseline_restaurant_black_48" />
+        />
 
 </LinearLayout>
