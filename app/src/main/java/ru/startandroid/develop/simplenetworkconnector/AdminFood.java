@@ -20,7 +20,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class admin_food extends AppCompatActivity {
+public class AdminFood extends AppCompatActivity {
 
     private Button btnAdd,delButton;
     private EditText nameText;
@@ -62,7 +62,7 @@ public class admin_food extends AppCompatActivity {
             } while (c.moveToNext());
         }
         c.close();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(admin_food.this, android.R.layout.simple_list_item_1, arr);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(AdminFood.this, android.R.layout.simple_list_item_1, arr);
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         ///
@@ -89,7 +89,7 @@ public class admin_food extends AppCompatActivity {
                     String str__ = "ИМЯ: " + name_java+ "; ЦЕНА: " + price_java;
                     arr = Arrays.copyOf(arr, arr.length + 1);
                     arr[arr.length - 1] = str__;
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(admin_food.this, android.R.layout.simple_list_item_1, arr);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(AdminFood.this, android.R.layout.simple_list_item_1, arr);
 
                     listView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
@@ -97,7 +97,7 @@ public class admin_food extends AppCompatActivity {
                     priceText.setText("");
                 }
                 catch(RuntimeException e){
-                    Toast.makeText(admin_food.this,"Error",Toast.LENGTH_LONG).show();
+                    Toast.makeText(AdminFood.this,"Error",Toast.LENGTH_LONG).show();
                 }
             }
         });

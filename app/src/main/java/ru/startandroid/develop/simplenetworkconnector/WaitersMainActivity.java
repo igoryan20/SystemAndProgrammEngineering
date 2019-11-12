@@ -16,9 +16,7 @@ import java.util.ArrayList;
 
 public class WaitersMainActivity extends AppCompatActivity {
 
-    ImageButton table2;
-    Toolbar waiters_toolbar;
-
+    ImageButton table1, table2, table3;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,13 +24,27 @@ public class WaitersMainActivity extends AppCompatActivity {
         setContentView(R.layout.waiters_main_activity);
 
 
+        table1 = (ImageButton) findViewById(R.id.img_table1);
         table2 = (ImageButton) findViewById(R.id.img_table2);
-        table2.setImageResource(R.drawable.table);
+        table3 = (ImageButton) findViewById(R.id.img_table3);
 
-        waiters_toolbar = (Toolbar)findViewById(R.id.waiters_toolbar);
-        setSupportActionBar(waiters_toolbar);
+
+
+        table1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(WaitersMainActivity.this, MainActivity.class));
+            }
+        });
 
         table2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(WaitersMainActivity.this, MenuActivity.class));
+            }
+        });
+
+        table3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(WaitersMainActivity.this, MenuActivity.class));
