@@ -1,50 +1,65 @@
 package ru.startandroid.develop.simplenetworkconnector;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
-import android.os.Bundle;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputEditText;
-import android.app.Activity;
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import android.view.View;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.ListIterator;
 
 
-public class MainActivity extends AppCompatActivity {
+        import android.app.AlertDialog;
+        import android.content.DialogInterface;
+        import android.os.Bundle;
+
+        import com.google.android.material.floatingactionbutton.FloatingActionButton;
+        import com.google.android.material.snackbar.Snackbar;
+        import com.google.android.material.textfield.TextInputEditText;
+        import android.app.Activity;
+        import android.content.ContentValues;
+        import android.content.Context;
+        import android.database.Cursor;
+        import android.database.sqlite.SQLiteDatabase;
+        import android.database.sqlite.SQLiteOpenHelper;
+        import android.os.Bundle;
+        import android.util.Log;
+        import android.view.View;
+        import android.view.View.OnClickListener;
+        import android.widget.AdapterView;
+        import android.widget.ArrayAdapter;
+        import android.widget.Button;
+        import android.widget.EditText;
+
+        import androidx.annotation.NonNull;
+        import androidx.annotation.Nullable;
+        import androidx.appcompat.app.AppCompatActivity;
+        import androidx.appcompat.widget.Toolbar;
+
+        import android.view.View;
+        import android.view.Menu;
+        import android.view.MenuItem;
+        import android.widget.Button;
+        import android.widget.ListAdapter;
+        import android.widget.ListView;
+        import android.widget.Toast;
+
+        import java.util.ArrayList;
+        import java.util.Arrays;
+        import java.util.Collection;
+        import java.util.Iterator;
+        import java.util.LinkedList;
+        import java.util.List;
+        import java.util.ListIterator;
+
+
+public class SearchFood extends AppCompatActivity {
 
     private DBHelper dbHelper = new DBHelper(this);
     private Button Search;
@@ -92,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
         c.close();
 
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -121,14 +136,14 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-          return true;
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
     public void addListenerOnButton(){
-        Search.setOnClickListener(new OnClickListener() {
+        Search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String s = str.getText().toString();
@@ -140,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(">>>",match[match.length - 1]);
                     }
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, match);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(SearchFood.this, android.R.layout.simple_list_item_1, match);
                 L1.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 str.setText("");
@@ -161,33 +176,3 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
-
-class DBHelper extends SQLiteOpenHelper {
-
-    public static final String DATABASE_NAME = "dishes.db";
-    public static final String TABLE_NAME = "food";
-    public static final String COL1 = "ID";
-    public static final String COL2 = "NAME";
-    public static final String COL3 = "PRICE";
-
-    public DBHelper(Context context) {
-        // конструктор суперкласса
-        super(context, "food", null, 1);
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        // создаем таблицу с полями
-        db.execSQL("create table food ("
-                + "ID INTEGER primary key autoincrement,"
-                + "NAME TEXT,"
-                + "PRICE REAL" + ");");
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-    }
-
-}
-
