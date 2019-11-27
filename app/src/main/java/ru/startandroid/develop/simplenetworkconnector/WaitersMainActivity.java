@@ -33,14 +33,14 @@ public class WaitersMainActivity extends AppCompatActivity {
         table1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(WaitersMainActivity.this, MainActivity.class));
+                startActivity(new Intent(WaitersMainActivity.this, SearchFood.class));
             }
         });
 
         table2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(WaitersMainActivity.this, MenuActivity.class));
+                startActivity(new Intent(WaitersMainActivity.this, AdminFood.class));
             }
         });
 

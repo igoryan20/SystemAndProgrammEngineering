@@ -34,7 +34,13 @@
                 <category android:name="android.intent.category.DEFAULT"></category>
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".SearchFood">
+            <intent-filter>
+                <action android:name="android.intent.action.ALL_APPS"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".AdminFood">
             <intent-filter>
                 <action android:name="android.intent.action.ALL_APPS"/>
                 <category android:name="android.intent.category.DEFAULT"/>
