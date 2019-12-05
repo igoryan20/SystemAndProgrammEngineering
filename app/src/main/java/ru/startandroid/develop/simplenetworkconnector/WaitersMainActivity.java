@@ -1,18 +1,13 @@
 package ru.startandroid.develop.simplenetworkconnector;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import androidx.appcompat.widget.Toolbar;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
 
 public class WaitersMainActivity extends AppCompatActivity {
 
@@ -33,21 +28,21 @@ public class WaitersMainActivity extends AppCompatActivity {
         table1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(WaitersMainActivity.this, SearchFood.class));
+                startActivity(new Intent(WaitersMainActivity.this, ChooseActivity.class));
             }
         });
 
         table2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(WaitersMainActivity.this, AdminFood.class));
+                //startActivity(new Intent(WaitersMainActivity.this, AdminFood.class));
             }
         });
 
         table3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(WaitersMainActivity.this, MenuActivity.class));
+                //startActivity(new Intent(WaitersMainActivity.this, MenuActivity.class));
             }
         });
 

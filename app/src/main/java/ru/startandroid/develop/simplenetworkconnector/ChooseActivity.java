@@ -1,10 +1,12 @@
 package ru.startandroid.develop.simplenetworkconnector;
 
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -15,12 +17,15 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class SearchFood extends AppCompatActivity {
+public class ChooseActivity extends AppCompatActivity {
 
     private DBHelper dbHelper = new DBHelper(this);
     private Button Search,reduce, increase, confirm_btn;
@@ -38,7 +43,7 @@ public class SearchFood extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_choose);
 
         fab = (FloatingActionButton)findViewById(R.id.sendOrder);
         confirm_btn=(Button)findViewById(R.id.confirm);
@@ -128,7 +133,16 @@ public class SearchFood extends AppCompatActivity {
                         Log.d(">>>",match[match.length - 1]);
                     }
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(SearchFood.this, android.R.layout.simple_list_item_1, match);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(ChooseActivity.this, android.R.layout.simple_list_item_1, match){
+                    @NonNull
+                    @Override
+                    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                        View view = super.getView(position, convertView, parent);
+                        TextView text = (TextView) view.findViewById(android.R.id.text1);
+                        text.setTextColor(Color.WHITE);
+                        return view;
+                    }
+                };
                 L1.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 str.setText("");
@@ -149,6 +163,7 @@ public class SearchFood extends AppCompatActivity {
                 cnt_txt.setVisibility(View.VISIBLE);
                 confirm_btn.setVisibility(View.VISIBLE);
                 cnt_txt.setText(String.valueOf(COUNT_FOOD));
+                L2.setVisibility(View.GONE);
             }
         });
 
@@ -156,7 +171,7 @@ public class SearchFood extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(COUNT_FOOD-1==-1){
-                    Toast.makeText(SearchFood.this,"Error",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ChooseActivity.this,"Error",Toast.LENGTH_LONG).show();
                 }
                 else{
                     COUNT_FOOD--;
@@ -180,7 +195,16 @@ public class SearchFood extends AppCompatActivity {
             public void onClick(View v) {
                 order = Arrays.copyOf(order, order.length+1);
                 order[order.length-1]=selectedItem +" x "+COUNT_FOOD;
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(SearchFood.this, android.R.layout.simple_list_item_1, order);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(ChooseActivity.this, android.R.layout.simple_list_item_1, order){
+                    @NonNull
+                    @Override
+                    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                        View view = super.getView(position, convertView, parent);
+                        TextView text = (TextView) view.findViewById(android.R.id.text1);
+                        text.setTextColor(Color.WHITE);
+                        return view;
+                    }
+                };
                 L2.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
 
@@ -188,6 +212,7 @@ public class SearchFood extends AppCompatActivity {
                 increase.setVisibility(View.INVISIBLE);
                 cnt_txt.setVisibility(View.INVISIBLE);
                 confirm_btn.setVisibility(View.INVISIBLE);
+                L2.setVisibility(View.VISIBLE);
 
                 COUNT_FOOD=0;
             }
@@ -204,15 +229,15 @@ public class SearchFood extends AppCompatActivity {
                         cv.put("name", order[i]);
                         db.insert("orders",null, cv);
                     }
-                    Toast.makeText(SearchFood.this,"Заказ отправлен на кухню",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChooseActivity.this,"Заказ отправлен на кухню",Toast.LENGTH_SHORT).show();
                     order = Arrays.copyOf(order, 0);
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(SearchFood.this, android.R.layout.simple_list_item_1, order);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(ChooseActivity.this, android.R.layout.simple_list_item_1, order);
                     L2.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 
                 }
                 catch(Exception e){
-                    Toast.makeText(SearchFood.this,"Error",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChooseActivity.this,"Error",Toast.LENGTH_SHORT).show();
                 }
             }
         });

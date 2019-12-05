@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.CharArrayBuffer;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -23,6 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import ru.startandroid.develop.simplenetworkconnector.AdminFood;
+import ru.startandroid.develop.simplenetworkconnector.CookMainActivity;
+import ru.startandroid.develop.simplenetworkconnector.StoreMainActivity;
 import ru.startandroid.develop.simplenetworkconnector.WaitersMainActivity;
 import ru.startandroid.develop.simplenetworkconnector.database.Employee;
 import ru.startandroid.develop.simplenetworkconnector.database.RestaurantDatabase;
@@ -45,7 +50,7 @@ public class CheckLoginRemoteDB extends AsyncTask<String, Integer, String> {
 
         try {
 
-            URL url = new URL("http://192.168.0.101:8080/cgi-bin/isLoginCorrect.py?login=" + login + "&password=" + password);
+            URL url = new URL("http://192.168.0.102:8080/cgi-bin/isLoginCorrect.py?login=" + login + "&password=" + password);
 
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
@@ -90,18 +95,41 @@ public class CheckLoginRemoteDB extends AsyncTask<String, Integer, String> {
         } else{
             tvError.setVisibility(View.GONE);
             Log.d("TAG", "else");
-            Intent intent = new Intent(context, WaitersMainActivity.class);
-            context.startActivity(intent);
-            RestaurantDatabase db = Room.databaseBuilder(context, RestaurantDatabase.class, "Restaurant_db").build();
-            Employee employee = new Employee();
-            String[] results = delimeStr(result);
-            employee.setLogin(results[1]);
-            employee.setPassword(results[2]);
-            employee.setFull_name(results[3]);
-            employee.setPosition(results[4]);
-            ;
-            //Employee employee1 = db.employeeDao().getByLogin(login);
-            Log.d("TAG","Sure?");
+            Log.d("TAG", result);
+            if(result.contains("cook")) {
+                Log.d("TAG", "cook");
+                Intent intent = new Intent(context, CookMainActivity.class);
+                context.startActivity(intent);
+            }
+            if(result.contains("waiter")) {
+                Log.d("TAG", "waiter");
+                Intent intent = new Intent(context, WaitersMainActivity.class);
+                context.startActivity(intent);
+            }
+            if(result.contains("store")) {
+                Log.d("TAG", "store");
+                Intent intent = new Intent(context, StoreMainActivity.class);
+                context.startActivity(intent);
+            }
+            if (result.contains("admin")){
+                Log.d("TAG", "admin");
+                Intent intent = new Intent(context, AdminFood.class);
+                context.startActivity(intent);
+            }
+
+
+
+
+//            RestaurantDatabase db = Room.databaseBuilder(context, RestaurantDatabase.class, "Restaurant_db").build();
+//            Employee employee = new Employee();
+//            String[] results = delimeStr(result);
+//            employee.setLogin(results[1]);
+//            employee.setPassword(results[2]);
+//            employee.setFull_name(results[3]);
+//            employee.setPosition(results[4]);
+//            ;
+//            //Employee employee1 = db.employeeDao().getByLogin(login);
+//            Log.d("TAG","Sure?");
 
         }
     }

@@ -1,50 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     package="ru.startandroid.develop.simplenetworkconnector">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/jazz_icon"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-        >
-        <activity
-            android:name=".login.LoginActivity">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".StoreMainActivity"></activity>
+        <activity android:name=".CookMainActivity" />
+        <activity android:name=".login.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"></action>
-                <category android:name="android.intent.category.LAUNCHER"></category>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".WaitersMainActivity">
             <intent-filter>
-                <action android:name="android.intent.action.ALL_APPS"></action>
-                <category android:name="android.intent.category.DEFAULT"></category>
+                <action android:name="android.intent.action.ALL_APPS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".MenuActivity">
             <intent-filter>
-                <action android:name="android.intent.action.ALL_APPS"></action>
-                <category android:name="android.intent.category.DEFAULT"></category>
+                <action android:name="android.intent.action.ALL_APPS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".SearchFood">
+        <activity android:name=".ChooseActivity">
             <intent-filter>
-                <action android:name="android.intent.action.ALL_APPS"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.ALL_APPS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".AdminFood">
             <intent-filter>
-                <action android:name="android.intent.action.ALL_APPS"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.ALL_APPS" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
     </application>
+
 </manifest>
